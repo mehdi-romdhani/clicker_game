@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: antiquewhite;
+}
+header {
+  display: flex;
+  flex-direction: row;
+
+  width: 100vw;
+  height: 10.5vw;
+}
+
+header nav {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid red; */
+  width: 100vw;
+}
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* border: 1px solid blue; */
+  width: 100vw;
+}
+
+header nav ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: black;
+  font-family: "Roboto Mono", monospace;
+  font-size: 2rem;
+}
+
+header nav ul li a:hover {
+  color: brown;
+}
+
+/****************Main-Container************/
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 13.5vw;
+  /* border: 1px solid black; */
+
+  background-image: url("img/matissemainav.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.main-container h1 {
+  font-family: "Roboto Mono", monospace;
+  color: black;
+  font-size: 5rem;
+}
+
+/*************Btn-Container**********/
+
+.second-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  margin-top: 5%;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+
+    /* border: 1px solid black; */
+}
+
+.fill{
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 50px 13px;
+    outline: 0;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    font-family: monospace;
+  }
+  
+  .fill::after {
+    content: "";
+    background-color: #ffe54c;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+  }
+  
+  .fill:hover::after {
+    top: 0px;
+    left: 0px;
+  }
