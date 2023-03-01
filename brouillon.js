@@ -11,10 +11,6 @@ const prixItem2 = document.querySelector("#prix-item2");
 const btnItems2 = document.querySelector("#btn-items-2");
 const multiplicateurItems2 = document.querySelector("#multi-item-2");
 const messBonus = document.querySelector("#count_bonus");
-const prixItems3 = document.querySelector('#prix-item3');
-const btnItem3 = document.querySelector('#btn-items-3');
-const multiplicateurItems3 = document.querySelector('#multi-item-3');
-
 
 /*********GLOBAL ITEMS */
 let messageMoney = " You Don't have enough coins man !! ";
@@ -59,18 +55,18 @@ function removeStorageReset() {
 
 function itemsOne() {
   if (coins >= prix1) {
-    coins = parseInt(localStorage.getItem('coins')) - prix1;
+    coins = localStorage.getItem('coins') - prix1;
     multi1++;
     prix1 = prix1 * 2;
-    spanScore.innerHTML = coins;
+    spanScore.innerHTML = parseInt(localStorage.getItem('coins'));
     paraMoney.innerHTML = "";
-    localStorage.setItem("prix1", prix1);
-    localStorage.setItem("multi1", multi1);
-    multiplicateurItems1.innerHTML = parseInt(localStorage.getItem("multi1"));
-    prixItem1.innerHTML = parseInt(localStorage.getItem("prix1"));
   } else {
     paraMoney.innerHTML = messageMoney;
   }
+  localStorage.setItem("prix1", prix1);
+  localStorage.setItem("multi1", multi1);
+  multiplicateurItems1.innerHTML = parseInt(localStorage.getItem("multi1"));
+  prixItem1.innerHTML = parseInt(localStorage.getItem("prix1"));
 }
 /*************************ITEMS 2 *********** */
 
@@ -81,91 +77,72 @@ let bonus;
 
 if (localStorage.getItem("prix2") === null) {
   prix2 = 100;
- 
 } else {
-  prix2 = parseInt(localStorage.getItem("prix2"));
+  prix2 = localStorage.getItem("prix2");
 }
 
 if (localStorage.getItem("multi2") === null) {
   multi2 = 1;
- 
 } else {
-  multi2 = parseInt(localStorage.getItem("multi2"));
+  multi2 = localStorage.getItem("multi2");
 }
 
 if (localStorage.getItem("secItem") === null) {
-  secSet = 2000;
-  // localStorage.setItem("secItem", secSet);
-
+  secSet = 1500;
 } else {
-  secSet = parseInt(localStorage.getItem("secItem"));
+  secSet = localStorage.getItem("secItem");
 }
 
 if (localStorage.getItem("messBonus") === null) {
   bonus = "Autoloading";
-  // localStorage.setItem("messBonus", bonus); // Ajoute le bonus dans le localstorage si il n'existe pas
 } else {
   bonus = localStorage.getItem("messBonus");
 }
 
-if (localStorage.getItem("messBonus") === "Autoloading") {
-  messBonus.textContent = "Autoloading";
-} 
-
-
 multiplicateurItems2.innerHTML = multi2 + "/s";
 prixItem2.innerHTML = prix2;
-
+messBonus.innerHTML = "";
 
 function coinsExpo() {
-coins++
-localStorage.setItem("coins", coins);
-spanScore.textContent=coins;
+ 
+  let storageCoins=parseInt(localStorage.getItem('coins'));
+  storageCoins++;
+  localStorage.setItem('coins',storageCoins);
+  spanScore.innerHTML = storageCoins;
 }
 
 async function itemsTwo() {
 
-  if (coins >= prix2) {
+  localStorage.setItem("prix2", prix2);
+  localStorage.setItem("multi2", multi2);
+  localStorage.setItem("secItem", secSet);
+  localStorage.setItem("messBonus", bonus);
 
-    coins = parseInt(localStorage.getItem('coins')) - prix2;
+  if (coins >= prix2) {
+    storageItems1 = parseInt(localStorage.getItem('coins')) - prix2;
     multi2++;
     prix2 = prix2 * 2;
     paraMoney.innerHTML = "";
-    spanScore.innerHTML = coins
-    localStorage.setItem('messBonus',bonus);
-    
-    messBonus.textContent = bonus;
+    spanScore.innerHTML = parseInt(localStorage.getItem('coins'));
+    messBonus.innerHTML = localStorage.getItem("messBonus");
     localStorage.setItem("secItem", secSet);
     setInterval(coinsExpo, secSet / multi2);
-    localStorage.setItem("prix2", prix2);
-    localStorage.setItem("multi2", multi2);
-    prixItem2.innerHTML = parseInt(localStorage.getItem('prix2'));
-    multiplicateurItems2.innerHTML = parseInt(localStorage.getItem("multi2")) + " /s ";
-    messBonus.textContent=localStorage.getItem('messBonus');
-  
   } else {
     paraMoney.innerHTML = messageMoney;
   }
 
-
-}
-
-if(localStorage.getItem('prix2')>=200){
-  setInterval(coinsExpo,secSet / multi2);
-}
-
-/**************ITEMS 3 **********/
-
-let prix3;
-let multi3;
-
-
-function itemsThree(){
   
+
+
+  prixItem2.innerHTML = parseInt(localStorage.getItem("prix2"));
+  multiplicateurItems2.innerHTML =parseInt(localStorage.getItem("multi2")) + " /s ";
+ 
 }
 
+if(localStorage.getItem('multi2')>=1){
+  setInterval(coinsExpo, secSet / multi2);
+}
 
-/************BTN-EVENT************/
 btnClick.addEventListener("click", () => {
   coins = coins + multi1;
   localStorage.setItem("coins", coins);
@@ -175,7 +152,6 @@ btnClick.addEventListener("click", () => {
 
 
 });
-
 
 btnReset.addEventListener("click", () => {
   removeStorageReset();
@@ -191,9 +167,5 @@ btnItems2.addEventListener("click", async () => {
   itemsTwo();
   console.log("tests");
 });
-
-btnItem3.addEventListener('click',(ev)=>{
-  console.log('test3');
-})
 
 /********************ITEMS 2 ************/

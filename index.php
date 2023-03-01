@@ -1,3 +1,10 @@
+<?php
+session_start();
+//require_once('./assets/connect.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,6 +16,8 @@
     <link rel="stylesheet" href="./assets/style.css">
     <!-- Link Js -->
     <script defer src="./assets/js/script.js"></script>
+    <script defer src="./assets/js/inscription.js"></script>
+    <script defer src="./assets/js/connexion.js"></script>
     <!-- API FONT GOOGLE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,28 +27,26 @@
 </head>
 
 <body>
-
-
     <div class="main-container">
         <h1>IDLE GAME_</h1>
-
     </div>
 
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.php">H O M <span style="color:brown;">E</span> </a></li>
-
-            </ul>
-        </nav>
-    </header>
+    <?php require_once('./include/header.php') ?>
 
     <div class="second-container">
         <div class="btn-container">
-            <button class="fill">Inscription</button>
-            <button class="fill">Connexion</button>
+            <button class="fill" id="btn-subscribe">Inscription</button>
+            <button class="fill" id="btn-connect">Connexion</button>
         </div>
+      
+        
     </div>
+
+    <div class="form-container">
+                
+    </div>
+
+
 </body>
 
 </html>
